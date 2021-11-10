@@ -29,11 +29,8 @@ Edge<T>::Edge(std::shared_ptr<Vertex<T>> nodeA, std::shared_ptr<Vertex<T>> nodeB
 template<typename T>
 Edge<T>::~Edge() {
 	std::cout << "Destructing edge " << std::endl;
-	std::cout << "A";
 	m_nodeA = nullptr;
 	m_nodeB = nullptr;
-	//m_nodeA = nullptr;
-	std::cout << "hello";
 }
 
 template<typename T>
@@ -45,7 +42,5 @@ template<typename T>
 inline std::shared_ptr<Vertex<T>> Edge<T>::getB() const {
 	return m_nodeB;
 }
-
-
 
 #endif // !EDGE

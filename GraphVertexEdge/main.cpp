@@ -6,9 +6,6 @@ int main() {
 
 	Graph<int> graph;
 
-	//std::shared_ptr<Vertex<int>> nodePtrA{std::make_shared<Vertex<int>>(5)};
-	//std::shared_ptr<Vertex<int>> nodePtrB{ std::make_shared<Vertex<int>>(2) };
-
 	std::shared_ptr<Vertex<int>> nodePtrA = graph.insertNode(5);
 	auto nodePtrB = graph.insertNode(2);
 	auto nodePtrC = graph.insertNode(3);
@@ -20,6 +17,8 @@ int main() {
 	auto edgePtrX = graph.insertEdge(nodePtrC, nodePtrD);
 	auto edgePtrY = graph.insertEdge(nodePtrC, nodePtrE);
 	auto edgePtrZ = graph.insertEdge(nodePtrE, nodePtrD);
+
+	graph.printGraph();
 
 	graph.removeEdge(edgePtrV);
 	graph.removeEdge(edgePtrW);
@@ -33,29 +32,17 @@ int main() {
 	graph.removeNode(nodePtrD);
 	graph.removeNode(nodePtrE);
 
-	std::cout << "hello" << std::endl;
+	edgePtrV = nullptr;
+	edgePtrW = nullptr;
+	edgePtrX = nullptr;
+	edgePtrY = nullptr;
+	edgePtrZ = nullptr;
 
-	try {
-		std::cout << "hi" << std::endl;
-		edgePtrV = nullptr;
-		std::cout << "a" << std::endl;
-		edgePtrW = nullptr;
-		edgePtrX = nullptr;
-		edgePtrY = nullptr;
-		edgePtrZ = nullptr;
-
-		nodePtrA = nullptr;
-		nodePtrB = nullptr;
-		nodePtrC = nullptr;
-		nodePtrD = nullptr;
-		nodePtrE = nullptr;
-
-		std::cout << "end" << std::endl;
-	} catch (...) { 
-		std::cout << "exception" << std::endl; 
-	}
-
-
+	nodePtrA = nullptr;
+	nodePtrB = nullptr;
+	nodePtrC = nullptr;
+	nodePtrD = nullptr;
+	nodePtrE = nullptr;
 
 	return 0;
 }

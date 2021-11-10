@@ -11,6 +11,7 @@ public:
 	std::shared_ptr<Edge<T>> insertEdge(std::shared_ptr<Vertex<T>> nodeA, std::shared_ptr<Vertex<T>> nodeB);
 	void removeNode(std::shared_ptr<Vertex<T>> node);
 	void removeEdge(std::shared_ptr<Edge<T>> edge);
+	void printGraph();
 private:
 	std::vector<std::shared_ptr<Vertex<T>>> m_nodePtrVector;
 	typename std::vector<std::shared_ptr<Vertex<T>>>::iterator findNode(std::shared_ptr<Vertex<T>> node);
@@ -28,21 +29,14 @@ std::shared_ptr<Vertex<T>> Graph<T>::insertNode(T val) {
 
 template<typename T>
 std::shared_ptr<Edge<T>> Graph<T>::insertEdge(std::shared_ptr<Vertex<T>> nodeA, std::shared_ptr<Vertex<T>> nodeB) {
-	/*for (int i{0}; i < m_nodePtrVector.size(); i++) {
-		if (m_nodePtrVector[i] == nodeA) {
-			m_nodePtrVector[i]->connectNode(nodeB);
-		}
-	}*/
-
 	std::shared_ptr<Edge<T>> edgePtr{ std::make_shared<Edge<T>>(nodeA, nodeB) };
 
 	auto itA = findNode(nodeA);
 	auto itB = findNode(nodeB);
 
 	if (itA != m_nodePtrVector.end() && itB != m_nodePtrVector.end()) {
-		edgePtr = {nodeA->connectNode(nodeB)};
-		//nodeA->addEdge(edgePtr);
-		//nodeB->addEdge(edgePtr);
+		nodeA->addEdge(edgePtr);
+		nodeB->addEdge(edgePtr);
 	}
 	return edgePtr;
 }
@@ -61,12 +55,16 @@ void Graph<T>::removeEdge(std::shared_ptr<Edge<T>> edge) {
 	auto itA = findNode(nodeA);
 	auto itB = findNode(nodeB);
 
-	if (itA != m_nodePtrVector.end() /* && itB != m_nodePtrVector.end()*/) {
-		//Removing edge from A should remove it from B aswell
-		std::cout << "remove B" << std::endl;
-		nodeB->removeEdge(edge);
-		std::cout << "remove A" << std::endl;
+	if (itA != m_nodePtrVector.end() && itB != m_nodePtrVector.end()) {
 		nodeA->removeEdge(edge);
+		nodeB->removeEdge(edge);
+	}
+}
+
+template<typename T>
+void Graph<T>::printGraph() {
+	for (int i{ 0 }; i < m_nodePtrVector.size(); i++) {
+		m_nodePtrVector[i]->printEdges();
 	}
 }
 
