@@ -23,16 +23,17 @@ private:
 template<typename T>
 Edge<T>::Edge(std::shared_ptr<Vertex<T>> nodeA, std::shared_ptr<Vertex<T>> nodeB) :
 	m_nodeA{ nodeA }, m_nodeB{ nodeB } {
-	std::cout << "Constructing edge" << std::endl;
+	std::cout << "Constructing edge: " << m_nodeA->getVal() << '-' << m_nodeB->getVal() << std::endl;
 }
 
 template<typename T>
 Edge<T>::~Edge() {
-	std::cout << "Destructing edge" << std::endl;
-	//Removing the link to this edge from its connected nodes
-	std::shared_ptr<Edge> thisEdge{ this };
-	m_nodeA->removeEdge(thisEdge);
-	m_nodeB->removeEdge(thisEdge);
+	std::cout << "Destructing edge " << std::endl;
+	std::cout << "A";
+	m_nodeA = nullptr;
+	m_nodeB = nullptr;
+	//m_nodeA = nullptr;
+	std::cout << "hello";
 }
 
 template<typename T>
